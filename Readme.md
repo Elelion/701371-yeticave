@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Александр Гинц](https://up.htmlacademy.ru/php/5/user/701371).
-* Наставник: `Неизвестно`.
+* Наставник: [Вячеслав Никитин](https://htmlacademy.ru/profile/id218143).
 
 ---
 
