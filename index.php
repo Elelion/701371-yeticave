@@ -34,8 +34,7 @@
         
         <!-- QUEST-1: Условие должно проверять истинность значения переменной $is_auth (сравнивать с истиной) -->
         <?php        	
-        	if($is_auth == true) 
-        	{        		
+        	if ($is_auth == true) {
         		?>
 	        		<div class="user-menu__image">
 						    <img src="<?php echo $user_avatar ?>" width="40" height="40" alt="Пользователь">
@@ -44,9 +43,7 @@
 						    <p><?php echo $user_name ?></p>
 						  </div>
 						<?php
-        	}
-        	else
-        	{
+        	} else {
         		?>
 	        		<ul class="user-menu__list">
 						    <li class="user-menu__item">
