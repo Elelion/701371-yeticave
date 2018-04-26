@@ -1,8 +1,12 @@
 <?php
-$is_auth = (bool) rand(0, 1);
+	//$is_auth - Переменная определяющая зарегистрировался ли(true) пользователь или нет(false)
+	//Присваиваем рандомное значение 1 или 0
+	$is_auth = (bool) rand(0, 1);
 
-$user_name = 'Константин';
-$user_avatar = 'img/user.jpg';
+	$user_name = 'Константин';	
+
+	//Присваиваем картинку переменной
+	$user_avatar = "img/user.jpg";
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,8 +31,31 @@ $user_avatar = 'img/user.jpg';
         <a class="main-header__add-lot button" href="add-lot.html">Добавить лот</a>
 
         <nav class="user-menu">
-
-        <!-- здесь должен быть PHP код для показа аватара пользователя -->
+        
+        <!-- QUEST-1: Условие должно проверять истинность значения переменной $is_auth (сравнивать с истиной) -->
+        <?php        	
+        	if ($is_auth == true) {
+        		?>
+	        		<div class="user-menu__image">
+						    <img src="<?php echo $user_avatar ?>" width="40" height="40" alt="Пользователь">
+						  </div>
+						  <div class="user-menu__logged">
+						    <p><?php echo $user_name ?></p>
+						  </div>
+						<?php
+        	} else {
+        		?>
+	        		<ul class="user-menu__list">
+						    <li class="user-menu__item">
+						      <a href="#">Регистрация</a>
+						    </li>
+						    <li class="user-menu__item">
+						      <a href="#">Вход</a>
+						    </li>
+						  </ul>
+						<?php
+        	}
+        ?>
 
         </nav>
     </div>
