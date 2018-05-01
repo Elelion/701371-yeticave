@@ -213,8 +213,6 @@ h2 {
   color: #727b7f;
 }
 
-/**/
-
 .user-menu {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -234,14 +232,17 @@ h2 {
   height: 100%;
 }
 
-.user-menu__logged {
+.user-menu__logged {  
   color: #879296;
-  line-height: 22px;
+  line-height: 22px;  
 }
 
 .user-menu__logged p {
   font-weight: 700;
   margin: 0;
+
+  /*выравниваем по вертикали имя пользователя*/
+  padding-top: 10px;  
 }
 
 .user-menu__logged a {
