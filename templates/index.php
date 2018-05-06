@@ -48,7 +48,8 @@
                             <!-- <span class="lot__cost"> //$product['price']; <b class="rub">р</b></span> -->
                         </div>
                         <div class="lot__timer timer">
-
+                            <!-- QUEST_3.2.3: Полученные часы и минуты в формате “Ч:М” показать в блоке под ценой лота div.lot__timer -->
+                            <?php print ElapsedTime(); ?>
                         </div>
                     </div>
                 </div>
