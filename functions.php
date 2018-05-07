@@ -26,10 +26,7 @@
 
   //QUEST_3.2.2: Требуется написать выражение, которое по уже знакомой формуле посчитает количество часов и минут до новых суток
   function elapsedTime()
-  {
-  	//QUEST_3.2.1: Установите часовую зону в московское время
-		date_default_timezone_set('Europe/Moscow');
-		
+  {  		
     $ts_midnight = strtotime('tomorrow');               //tomorrow - означает, полночть    
     $secs_to_midnight = $ts_midnight - time();          //считаем разницу между полуночтью и текущем временем
     $hours = floor($secs_to_midnight / 3600);           //Получаем число часов, floor - округление

@@ -1,4 +1,9 @@
 <?php
+//QUEST_3.2.1: Установите часовую зону в московское время
+    date_default_timezone_set('Europe/Moscow');
+
+//QUEST_3.1.6: Создайте в корне файл functions.php и подключите его в index.php. (см. каталог templates)
+    require_once 'functions.php';
 
 //QUEST_3.1.5: В файле index.php удалите весь HTML-код, который вы перенесли в файлы шаблонов (см. каталог /templates/...)
 
@@ -54,9 +59,6 @@
     ];
 
     $title = "Главная"; 
-
-//QUEST_3.1.6: Создайте в корне файл functions.php и подключите его в index.php. (см. каталог templates)
-    require_once 'functions.php';
     
     $content = render('index', ['product_list' => $product_list ]);
     print(render('layout', ['title' => $title, 'content' => $content, 'user_name' => $user_name, 'user_avatar' => $user_avatar, 'is_auth' => $is_auth,
