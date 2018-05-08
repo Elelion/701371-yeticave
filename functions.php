@@ -23,4 +23,14 @@
 
     return $content;
   }
+
+  //QUEST_3.2.2: Требуется написать выражение, которое по уже знакомой формуле посчитает количество часов и минут до новых суток
+  function elapsedTime()
+  {  		
+    $ts_midnight = strtotime('tomorrow');               //tomorrow - означает, полночть    
+    $secs_to_midnight = $ts_midnight - time();          //считаем разницу между полуночтью и текущем временем
+    $hours = floor($secs_to_midnight / 3600);           //Получаем число часов, floor - округление
+    $minutes = floor(($secs_to_midnight % 3600) / 60);  //Получаем число минут, floor - округление
+    print("$hours Ч : $minutes М");                     //выводим оставшиеся часы и минуты
+  }
 ?>
