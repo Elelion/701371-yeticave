@@ -9,8 +9,8 @@ CREATE TABLE category (
 CREATE TABLE lot (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	date_create DATETIME,
-	title TEXT(1000),
-	description VARCHAR(255),
+	title VARCHAR(255),
+	description TEXT(1024),
 	image_file VARCHAR(255),
 	start_price INT(8),
 	date_completed DATETIME,
@@ -46,7 +46,6 @@ CREATE TABLE user (
 
 
 CREATE INDEX index_title ON lot(title);
-CREATE INDEX index_desc ON lot(description);
 CREATE FULLTEXT INDEX index_description ON lot(description);
 ALTER TABLE lot ADD FOREIGN KEY (author_id) REFERENCES user(id);
 ALTER TABLE lot ADD FOREIGN KEY (winner_id) REFERENCES user(id);
