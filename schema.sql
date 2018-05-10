@@ -45,6 +45,7 @@ CREATE TABLE user (
 );
 
 
+
 CREATE INDEX index_title ON lot(title);
 CREATE INDEX index_desc ON lot(description);
 CREATE FULLTEXT INDEX index_description ON lot(description);
