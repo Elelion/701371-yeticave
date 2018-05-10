@@ -9,7 +9,7 @@ CREATE TABLE category (
 CREATE TABLE lot (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	date_create DATETIME,
-	title VARCHAR(255),
+	title TEXT(1000),
 	description VARCHAR(255),
 	image_file VARCHAR(255),
 	start_price INT(8),
