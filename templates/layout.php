@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-
-<!--  QUEST_3.1.3.1: в теге title должна быть переменная, в которой будет имя страницы -->
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    
-    <!-- Передаем нашей ф-ции значение title, в дальнейшем мы ее выведем (print(render('layout', ['title' => $title,..), в index.php -->
+    <meta charset="UTF-8">    
     <title><?= $data['title'] ?></title>
-
     <link href="css/normalize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -26,8 +21,7 @@
         <a class="main-header__add-lot button" href="add-lot.html">Добавить лот</a>    
 
         <nav class="user-menu">
-
-        <!-- QUEST-1: Условие должно проверять истинность значения переменной $is_auth (сравнивать с истиной) -->
+    
         <?php
         if ($data['is_auth'] == true) {
             ?>
@@ -57,12 +51,10 @@
     </div>
 </header>
 
-<!-- QUEST_3.1.3.2 ... на место содержимого тега main поставьте вывод переменной, в которой будет контент страницы -->
-<!-- см.видео, data - можем задать любое имя, дублируется в ф-ции functions !!! -->
-
 <!-- ......................... -->
 
-<?php echo $data['content']; ?> <!-- будет выводить середину сайта где наш каталог -->
+<!-- будет выводить середину сайта где наш каталог -->
+<?php echo $data['content']; ?>
 
 <!-- ......................... -->
 
@@ -70,8 +62,6 @@
     <nav class="nav">
         <ul class="nav__list container">
 
-<!-- QUEST_2.3: Найдите в HTML-коде список ul.nav__list. Используйте цикл, чтобы заменить содержимое списка данными из массива категорий./li> 
-    Сокращаеть переменные до cat... м.и.п. НЕ рекомендуется. Т.к. тыкнув в любую строку, нужно опнимать что происходит в коде -->
         <?php foreach($data['category_list'] as $category) { ?>
             <li class="nav__item">
                 <a href="all-lots.html"><?php print($category); ?></a>

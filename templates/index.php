@@ -27,11 +27,7 @@
         <div class="lots__header">
             <h2>Открытые лоты</h2>
         </div>
-        <ul class="lots__list">
-
-<!-- QUEST_2.4: Объявления выводятся как элементы списка ul.lots__list. Используя цикл для прохода по массиву с лотами, 
-    заполните этот список объявлениями. Каждый элемент списка (объявление) должно подставлять информацию в теги 
-    из соответствующего ключа массива. -->                
+        <ul class="lots__list">              
             <?php foreach($data['product_list'] as $product) { ?>
             <li class="lots__item lot">
                 <div class="lot__image">
