@@ -25,11 +25,23 @@
     require_once 'src/functions.php';
 
 //QUEST_5.2: Отправьте SQL-запрос для получения всей информации по новым лотам
-    $sql_lot = "SELECT * FROM lot";
-    $result_lot = mysqli_query($link, $sql_lot);
-    $rows_lot = mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
 
-    //Выводим наши данные из БД в массив category_list[], выводим его ниже...
+    //Выводим наши данные из БД в массив category_list[], выводим его ниже...    
+    $sql_lot = "SELECT 
+                title AS name, 
+                start_price as price,
+                image_files as url,
+                category.name as category
+                FROM lot 
+                INNER JOIN category ON lot.category_id = category.id";
+    
+    $result_lot = mysqli_query($link, $sql_lot);
+    
+    $product_list = mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
+    //$rows_lot = mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
+
+//Выводим наши данные из БД в массив category_list[], выводим его ниже...    
+/*
     foreach ($rows_lot as $row_lot) {
 		$product = []; //Задаем переменную как массив!!! Важно!!!
 		$product['name'] = $row_lot['name']; //Запихиваем в нее знаения из нашей БД (см. запрос выше)
@@ -38,6 +50,7 @@
 		$product['url'] = $row_lot['url'];
 		$product_list[] = $product; //Когда передаем значения массиву, то пишем в таком формате $массив[] = $массив (БЕЗ [] важно!!!)
     }
+*/
 
     $is_auth = (bool) rand(0, 1);
     $user_name = 'Константин';
