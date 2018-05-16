@@ -30,7 +30,7 @@
     $sql_lot = "SELECT 
                 title AS name, 
                 start_price as price,
-                image_files as url,
+                image_file as url,
                 category.name as category
                 FROM lot 
                 INNER JOIN category ON lot.category_id = category.id";
@@ -38,20 +38,7 @@
     $result_lot = mysqli_query($link, $sql_lot);
     
     $product_list = mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
-    //$rows_lot = mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
-
-//Выводим наши данные из БД в массив category_list[], выводим его ниже...    
-/*
-    foreach ($rows_lot as $row_lot) {
-		$product = []; //Задаем переменную как массив!!! Важно!!!
-		$product['name'] = $row_lot['name']; //Запихиваем в нее знаения из нашей БД (см. запрос выше)
-		$product['category'] = $row_lot['category'];
-		$product['price'] = $row_lot['price'];
-		$product['url'] = $row_lot['url'];
-		$product_list[] = $product; //Когда передаем значения массиву, то пишем в таком формате $массив[] = $массив (БЕЗ [] важно!!!)
-    }
-*/
-
+    
     $is_auth = (bool) rand(0, 1);
     $user_name = 'Константин';
     $user_avatar = "img/user.jpg";
@@ -63,7 +50,7 @@
 
 //QUEST_5.5: Используйте эти данные для показа списка категорий в футере страницы (вывод остается преждним как и ранее, лишь беруться данные из БД)
     print(render('layout', ['title' => $title, 'content' => $content, 'user_name' => $user_name, 'user_avatar' => $user_avatar, 'is_auth' => $is_auth,
-        'category_list' => $category_list]));    
+        'category_list' => $category_list]));
 
 
 //НЕ ЗАКРЫВАТЬ PHP!!!...
