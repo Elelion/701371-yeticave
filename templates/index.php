@@ -3,24 +3,21 @@
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
-            <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="all-lots.html">Доски и лыжи</a>
-            </li>
-            <li class="promo__item promo__item--attachment">
-                <a class="promo__link" href="all-lots.html">Крепления</a>
-            </li>
-            <li class="promo__item promo__item--boots">
-                <a class="promo__link" href="all-lots.html">Ботинки</a>
-            </li>
-            <li class="promo__item promo__item--clothing">
-                <a class="promo__link" href="all-lots.html">Одежда</a>
-            </li>
-            <li class="promo__item promo__item--tools">
-                <a class="promo__link" href="all-lots.html">Инструменты</a>
-            </li>
-            <li class="promo__item promo__item--other">
-                <a class="promo__link" href="all-lots.html">Разное</a>
-            </li>
+            <?php foreach($data['category_list'] as $category) { 
+                $item;
+                switch($category) {
+                    case "Доски и лыжи": $item = "boards";      break;
+                    case "Крепления":    $item = "attachment";  break;
+                    case "Ботинки":      $item = "boots";       break;
+                    case "Одежда":       $item = "clothing";    break;
+                    case "Инструменты":  $item = "tools";       break;
+                    case "Разное":       $item = "other";       break;
+                }
+                ?>
+                <li class="promo__item promo__item--<?php echo $item ?>">                    
+                    <a class="promo__link" href="all-lots.html"><?php print($category); ?></a>
+                </li>
+            <?php } ?>
         </ul>
     </section>
     <section class="lots">
