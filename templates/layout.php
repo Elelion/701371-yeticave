@@ -29,7 +29,7 @@
                     <img src="<?php echo $data['user_avatar']; ?>" width="40" height="40" alt="Пользователь">
                 </div>
                 <div class="user-menu__logged">
-                    <p><?php echo $data['user_name']; ?></p>
+                    <p><?php echo htmlspecialchars_decode($data['user_name']); ?></p>
                 </div>
             <?php
             } else {
@@ -61,13 +61,11 @@
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-
-        <?php foreach($data['category_list'] as $category) { ?>
-            <li class="nav__item">
-                <a href="all-lots.html"><?php print($category); ?></a>
-            </li>
-        <?php } ?>
-          
+            <?php foreach($data['category_list'] as $category) { ?>
+                <li class="nav__item">
+                    <a href="all-lots.html"><?php print($category); ?></a>
+                </li>
+            <?php } ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">
