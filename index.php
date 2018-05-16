@@ -46,7 +46,7 @@
     $title = "Главная"; 
     
 //QUEST_5.3: Используйте эти данные для показа списка карточек лотов на главной странице
-    $content = render('index', ['product_list' => $product_list ]);
+    $content = render('index', ['product_list' => $product_list, 'category_list' => $category_list]);
 
 //QUEST_5.5: Используйте эти данные для показа списка категорий в футере страницы (вывод остается преждним как и ранее, лишь беруться данные из БД)
     print(render('layout', ['title' => $title, 'content' => $content, 'user_name' => $user_name, 'user_avatar' => $user_avatar, 'is_auth' => $is_auth,
