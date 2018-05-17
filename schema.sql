@@ -3,15 +3,16 @@
 
 CREATE TABLE category (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(64)
+	name VARCHAR(64),
+	css_class VARCHAR(16) #для CSS
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 CREATE TABLE lot (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	date_create DATETIME,
-	title TEXT(1000),
-	description VARCHAR(255),
+	title VARCHAR(64),
+	description TEXT(1024),
 	image_file VARCHAR(255),
 	start_price INT(8),
 	date_completed DATETIME,
