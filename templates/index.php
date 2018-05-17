@@ -2,20 +2,12 @@
     <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
-        <ul class="promo__list">
-            <?php foreach($data['category_list'] as $category) { 
-                $item;
-                switch($category) {
-                    case "Доски и лыжи": $item = "boards";      break;
-                    case "Крепления":    $item = "attachment";  break;
-                    case "Ботинки":      $item = "boots";       break;
-                    case "Одежда":       $item = "clothing";    break;
-                    case "Инструменты":  $item = "tools";       break;
-                    case "Разное":       $item = "other";       break;
-                }
-                ?>
-                <li class="promo__item promo__item--<?php echo $item ?>">                    
-                    <a class="promo__link" href="all-lots.html"><?php print($category); ?></a>
+        <ul class="promo__list">            
+
+            <!-- QUEST_5.4: переделываем для вывода -->
+            <?php foreach($data['category_list'] as $category) { ?>
+                <li class="promo__item promo__item--<?php print($category['css_class']) ?>">                    
+                    <a class="promo__link" href="all-lots.html"><?php print($category['name']); ?></a>
                 </li>
             <?php } ?>
         </ul>
