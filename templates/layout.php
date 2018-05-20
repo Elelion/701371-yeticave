@@ -7,7 +7,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
+    
 <header class="main-header">
     <div class="main-header__container container">
         <h1 class="visually-hidden">YetiCave</h1>
@@ -51,12 +51,10 @@
     </div>
 </header>
 
-<!-- ......................... -->
-
-<!-- будет выводить середину сайта где наш каталог -->
-<?php echo $data['content']; ?>
-
-<!-- ......................... -->
+<?php 
+    //выводим наш контент
+    echo $data['content'];     
+?>
 
 <footer class="main-footer">
     <nav class="nav">
