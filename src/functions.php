@@ -15,7 +15,7 @@
 
 //ф-ция для шаблона пути
     function way($file) {    
-        $path = 'templates' . DIRECTORY_SEPARATOR . $file . '.php';
+        $path = $file . '.php';
         print($path);
   }
 
