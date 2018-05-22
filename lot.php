@@ -1,6 +1,14 @@
 <?php
-    require_once 'src/functions.php';
+require_once 'src/functions.php';
 
+//QUEST_6.6: Если параметр запроса отсутствует, либо если по этому id не нашли ни одной записи, 
+//то вместо содержимого страницы возвращать код ответа 404. 
+// ИЛИ QUEST_6.3: Проверьте существование параметра запроса с id лота
+if((empty($_GET['id'])) || ($_GET['id'] > countCategory())) { //если передан ПУСТОЙ параметр, то...
+    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); //Сообщаем 404 ошибку
+    exit();
+}
+else {        
     date_default_timezone_set('Europe/Moscow');
 
     $link = connectDB();
@@ -45,5 +53,6 @@
                             'user_avatar' => $user_avatar, 
                             'is_auth' => $is_auth, 
                             'category_list' => $category_list]));
+} //else...
 
 //НЕ ЗАКРЫВАТЬ PHP!!!...
