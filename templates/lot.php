@@ -2,38 +2,30 @@
   <nav class="nav">
     <ul class="nav__list container">
 
-      <?php        
-      //QUEST_6.3: Проверьте существование параметра запроса с id лота
-      //QUEST_6.6: Если параметр запроса отсутствует, либо если по этому id не нашли ни одной записи, 
-      //то вместо содержимого страницы возвращать код ответа 404. 
-      if(empty($_GET['id'])) { //если передан ПУСТОЙ параметр, то...
-        header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); //Сообщаем 404 ошибку
-      }
-      else {      
-        foreach($data['category_list'] as $category) { ?>
-          <li class="nav__item">
-            <a href="all-lots.html"><?php print($category['name']); ?></a>
-          </li>
-        <?php } ?>
+    <?php                        
+      foreach($data['category_list'] as $category) { ?>
+        <li class="nav__item">
+          <a href="all-lots.html"><?php print($category['name']); ?></a>
+        </li>
+      <?php } ?>
         
     </ul>
   </nav>
 
+      <?php
+        if($_GET['id'] > countCategory())
+        {
+          header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); //Сообщаем 404 ошибку
+          exit();
+        }
+        else {
+          foreach($data['product_list'] as $product) {            
+        ?>
+
 <!-- QUEST_6.5: Покажите информацию о лоте на странице (см. ниже) -->
   <section class="lot-item container">
-    <h2>DC Ply Mens 2016/2017 Snowboard</h2>
+    <h2><?= $product['name']; ?></h2>
     <div class="lot-item__content">
-
-      <?php foreach($data['product_list'] as $product) { 
-        /*
-        if($_GET['id'] != $product['id'])
-        {
-          header("HTTP/1.0 404 Not Found");
-          header("HTTP/1.1 404 Not Found");
-          header("Status: 404 Not Found");
-          die();
-        }*/
-        ?>
         <div class="lot-item__left">
 
           <div class="lot-item__image">
@@ -129,8 +121,7 @@
             </table>
           </div>
         </div>
-      <?php } 
-    }?>
+      <?php } } ?>
     </div>
   </section>
 </main>
