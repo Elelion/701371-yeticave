@@ -33,9 +33,9 @@
                         <span class="lot__category"><?= $product['category']; ?></span>
                         <h3 class="lot__title">
 
-                            <!-- QUEST_6.1: Создайте новый сценарий для показа страницы лота - lot.php --> <a class="text-link" 
-                                href="<?php way('lot') . print("?id=" . $product['id']); ?> ">
-                                <?= $product['name']; ?>
+                            <!-- QUEST_6.1: Создайте новый сценарий для показа страницы лота - lot.php --> <a class="text-link"                             
+                                href="<?php print(getPathToScript('lot') . "?id=" . $product['id']); ?> ">
+                                <?= $product['name']; ?>                                
                             </a>
                         </h3>
 

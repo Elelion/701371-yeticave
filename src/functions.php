@@ -14,9 +14,9 @@
     }
 
 //ф-ция для шаблона пути
-    function way($file) {    
-        $path = $file . '.php';
-        print($path);
+    function getPathToScript($file) {    
+        $path = $file . '.php';        
+        return $path;
   }
 
 //Выводим оставшиеся время
@@ -54,11 +54,11 @@
     }
 
   //Считаем кол-во записей в категориях
-    function countCategory() {   
+    function countLot() {   
         //подключаемся к БД
         $link = connectDB();
 
-        $sql_category_count = "SELECT * FROM category";
+        $sql_category_count = "SELECT * FROM lot";
         $result_category = mysqli_query($link, $sql_category_count);
 
         //mysqli_num_rows - подсчитывает кол-во записей в ДБ

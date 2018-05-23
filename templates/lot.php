@@ -13,7 +13,7 @@
   </nav>
 
       <?php
-        if($_GET['id'] > countCategory())
+        if($_GET['id'] > countLot())
         {
           header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); //Сообщаем 404 ошибку
           exit();
@@ -63,6 +63,9 @@
                 <input id="cost" type="number" name="cost" placeholder="12 000">
               </p>
               <button type="submit" class="button">Сделать ставку</button>
+<!-- ................................................ -->
+<!-- .........<?php echo $product['id'];  ?>..........-->
+<!-- .................................................-->              
             </form>
           </div>
           <div class="history">
