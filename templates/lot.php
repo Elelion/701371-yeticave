@@ -50,7 +50,7 @@
               <div class="lot-item__min-cost">
                 Мин. ставка <span>                  
                   <?= 
-                    number_format($min_price = sumPrice($product['price'], $product['StepPrice']), 
+                    number_format(sumPrice($product['price'], $product['StepPrice']), 
                                   0, ',' , ' ' ); 
                   ?>
                 р</span>
