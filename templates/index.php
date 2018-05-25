@@ -1,7 +1,3 @@
-<?php
-    //require_once 'src/functions.php';
-?>
-
 <main class="container">
     <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
@@ -51,7 +47,7 @@
                             </div>
                             <div class="lot__timer timer">
                                 <!-- Оставшееся время до полуночи -->
-                                <?php print ElapsedTime(); ?>
+                                <?= elapsedTime(); ?>
                             </div>
                         </div>
                     </div>

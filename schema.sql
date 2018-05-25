@@ -10,7 +10,8 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 CREATE TABLE lot (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	date_create DATETIME,
+	date_create DATE,
+	time_create TIME,
 	title VARCHAR(64),
 	description TEXT(1024),
 	image_file VARCHAR(255),
@@ -40,10 +41,7 @@ CREATE TABLE user (
 	username VARCHAR(32),
 	password CHAR(64),
 	avatar VARCHAR(255),
-	contact VARCHAR(64),
-
-	lot_id INT(8),
-	rate_id INT(8)
+	contact VARCHAR(64)
 );
 
 
@@ -57,5 +55,3 @@ ALTER TABLE rate ADD FOREIGN KEY (user_id) REFERENCES user(id);
 ALTER TABLE rate ADD FOREIGN KEY (lot_id) REFERENCES lot(id);
 
 CREATE UNIQUE INDEX index_email ON user(email);
-ALTER TABLE user ADD FOREIGN KEY (lot_id) REFERENCES lot(id);
-ALTER TABLE user ADD FOREIGN KEY (rate_id) REFERENCES rate(id);

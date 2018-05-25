@@ -1,70 +1,59 @@
 <?php
-    function render($name, $data) {
-        ob_start();
-        $filePath = 'templates' . DIRECTORY_SEPARATOR . $name . '.php';
+function render($name, $data) {
+    ob_start();
+    $filePath = 'templates' . DIRECTORY_SEPARATOR . $name . '.php';
 
-        if (is_file($filePath)) {      
-            require $filePath;
-        }
-
-        $content = ob_get_contents();  
-        ob_clean();
-
-        return $content;
+    if (is_file($filePath)) {      
+        require $filePath;
     }
+
+    $content = ob_get_contents();  
+    ob_clean();
+
+    return $content;
+}
 
 //ф-ция для шаблона пути
-    function getPathToScript($file) {    
-        $path = $file . '.php';        
-        return $path;
-  }
+function getPathToScript($file) {    
+    $path = $file . '.php';        
+    return $path;
+}
 
 //Выводим оставшиеся время
-    function elapsedTime() {		
-        //tomorrow - означает, полночть
-        $ts_midnight = strtotime('tomorrow');
+function elapsedTime($format = "%H Ч : %M M") {		
+    //tomorrow - означает, полночть
+    $ts_midnight = strtotime('tomorrow');
 
-        //считаем разницу между полуночтью и текущем временем
-        $secs_to_midnight = $ts_midnight - time();
-
-        //Получаем число часов, floor - округление
-        $hours = floor($secs_to_midnight / 3600);
-
-        //Получаем число минут, floor - округление
-        $minutes = floor(($secs_to_midnight % 3600) / 60);
-        
-        //выводим оставшиеся часы и минуты
-        print("$hours Ч : $minutes М");
-    }
+    $secToMidnight = $ts_midnight - time();
+    $result = gmstrftime($format, $secToMidnight);
+    return $result;
+}
 
 //Подключаемся к ДБ
-    function connectDB() {    
-        //ВАЖНО: данные для подключения должны всегда храниться в файле!!!
-        $link = mysqli_connect("127.0.0.1", "root", "", "yeticave");
-        mysqli_set_charset($link, "utf8");
+function connectDB() {    
+    //ВАЖНО: данные для подключения должны всегда храниться в файле!!!
+    $link = mysqli_connect("127.0.0.1", "root", "", "yeticave");
+    mysqli_set_charset($link, "utf8");
 
-        if (!$link) {
-            echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
-            echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
-            echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
-            exit;
-        }
-
-        return $link;
+    if (!$link) {
+        echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
+        echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
+        echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
+        exit;
     }
 
-  //Считаем кол-во записей в категориях
-    function countLot() {   
-        //подключаемся к БД
-        $link = connectDB();
+    return $link;
+}
 
-        $sql_category_count = "SELECT * FROM lot";
-        $result_category = mysqli_query($link, $sql_category_count);
+//Ошибка 404
+function Error404() {
+    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); //Сообщаем 404 ошибку
+    exit();
+}
 
-        //mysqli_num_rows - подсчитывает кол-во записей в ДБ
-        $records_count = mysqli_num_rows($result_category);
-
-        //print($records_count);    
-        return $records_count;
-    }
+//Подсчитываем Вашу ставку см.templates \ lot.php
+function sumPrice($current, $stepPrice) {
+    $sum = $current + $stepPrice;
+    return $sum;
+}
 ?>

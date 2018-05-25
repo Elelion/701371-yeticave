@@ -13,14 +13,8 @@
   </nav>
 
       <?php
-        if($_GET['id'] > countLot())
-        {
-          header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); //Сообщаем 404 ошибку
-          exit();
-        }
-        else {
-          foreach($data['product_list'] as $product) {            
-        ?>
+        foreach($data['product_list'] as $product) {            
+      ?>
 
 <!-- QUEST_6.5: Покажите информацию о лоте на странице (см. ниже) -->
   <section class="lot-item container">
@@ -42,7 +36,7 @@
         <div class="lot-item__right">
           <div class="lot-item__state">
             <div class="lot-item__timer timer">
-              10:54:12
+              <?= elapsedTime('%H:%M:%S'); ?>
             </div>
             <div class="lot-item__cost-state">
               <div class="lot-item__rate">
@@ -54,77 +48,49 @@
                 <b class="rub">р</b></span>
               </div>
               <div class="lot-item__min-cost">
-                Мин. ставка <span>12 000 р</span>
+                Мин. ставка <span>                  
+                  <?= 
+                    number_format($min_price = sumPrice($product['price'], $product['StepPrice']), 
+                                  0, ',' , ' ' ); 
+                  ?>
+                р</span>
               </div>
             </div>
             <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
               <p class="lot-item__form-item">
                 <label for="cost">Ваша ставка</label>
-                <input id="cost" type="number" name="cost" placeholder="12 000">
+                <input id="cost" type="number" name="cost" placeholder="
+                <?= sumPrice($product['price'], $product['StepPrice']); ?>
+                ">
               </p>
-              <button type="submit" class="button">Сделать ставку</button>
-<!-- ................................................ -->
-<!-- .........<?php echo $product['id'];  ?>..........-->
-<!-- .................................................-->              
+              <button type="submit" class="button">Сделать ставку</button>            
             </form>
           </div>
+          
           <div class="history">
-            <h3>История ставок (<span>10</span>)</h3>
+            <h3>История ставок (<span><?= count($data['rate_list']); ?></span>)</h3>
             <table class="history__list">
-              <tr class="history__item">
-                <td class="history__name">Иван</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">5 минут назад</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Константин</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">20 минут назад</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Евгений</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">Час назад</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Игорь</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 08:21</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Енакентий</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 13:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Семён</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 12:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Илья</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 10:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Енакентий</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 13:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Семён</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 12:20</td>
-              </tr>
-              <tr class="history__item">
-                <td class="history__name">Илья</td>
-                <td class="history__price">10 999 р</td>
-                <td class="history__time">19.03.17 в 10:20</td>
-              </tr>
+              <?php foreach($data['rate_list'] as $rate) { ?>
+                <tr class="history__item">                
+                  <td class="history__name"><?php print($rate['username']) ?></td>
+
+                  <!-- выводит дату из БД -->                
+                  <td class="history__price"><?php print($rate['amount']) ?> р </td>
+                  
+                  <td class="history__time">
+                    <?php                                                    
+                      //Выводим время из БД
+                      $date = date('d.m.y', strtotime($rate['date_create'])); 
+                      $time = date('H:i', strtotime($rate['time_create']));                    
+                      print($date . "в " . $time);
+                    ?>
+                  </td>
+                </tr>
+                <?php } ?>
             </table>
-          </div>
+          </div>          
         </div>
-      <?php } } ?>
+      <?php } ?>
     </div>
   </section>
 </main>
