@@ -2,19 +2,18 @@
 require_once 'src/functions.php';
 date_default_timezone_set('Europe/Moscow');
 
-$link = connectDB(); //link - хранит ресурс, ресурс не как не отображается.
+$link = connectDB();
 
 $sql = "SELECT * FROM category";
 $result = mysqli_query($link, $sql);
 
-//MYSQLI_ASSOC - возвращает массив в читабельном виде (типа матрици)
 $category_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 $sql_lot = "SELECT 
             title AS name, 
             start_price as price,
             image_file as url,
-            lot.id, #добавляем для id по которому будет происходить линк на др. стр
+            lot.id,
             category.name as category
             FROM lot 
             INNER JOIN category ON lot.category_id = category.id";
