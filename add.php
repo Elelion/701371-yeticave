@@ -2,10 +2,20 @@
 require_once 'src/functions.php';
 date_default_timezone_set('Europe/Moscow');
 
-//Защита от прямого захода по add.php
-if(!isset($_POST["add_done"])) {
-  Error404();
-}
+
+
+$lotName = $_POST['lot-name'];
+echo $lotName;
+
+  
+
+
+/*
+if (!empty($lotName)) {
+  if ($lotName != $_POST["lot_name_pass"]) {
+    echo "ERROR";    
+  }
+}*/
 
 $link = connectDB();
 

@@ -10,26 +10,32 @@
       <?php } ?>
 
     </ul>
-  </nav>
+  </nav>  
 
-  <?php foreach($data['product_list'] as $product) { ?>
+<!-- QUEST_6.2.3: ...а action формы указывать на add.php -->
+  <form class="form form--add-lot container form--invalid" action="add.php" method="post"> <!-- form--invalid -->
 
-  <form class="form form--add-lot container form--invalid" action="https://echo.htmlacademy.ru" method="post"> <!-- form--invalid -->
+    <?php //foreach($data['product_list'] as $product) { ?>
+
     <h2>Добавление лота</h2>
     <div class="form__container-two">
       <div class="form__item form__item--invalid"> <!-- form__item--invalid -->
         <label for="lot-name">Наименование</label>
         
-<!-- получаем наше значение -->        
-        <input id="lot-name" type="text" name="lot-name" 
+<!-- получаем наше значение -->
+        <form action="../add.php" method="post">
+          <input id="lot-name" type="text" 
+                              name="lot-name"
                               placeholder="Введите наименование лота" 
-                              value= "<?= $_POST["lot_name_pass"]; ?>">
+                              value= "<?= $_POST["lot_name_pass"]; ?>"
+                              required>
+        </form>
 
         <span class="form__error">Введите наименование лота</span>
       </div>
       <div class="form__item">
         <label for="category">Категория</label>
-        <select id="category" name="category" >
+        <select id="category" name="lot-category" >
           <option>Выберите категорию</option>
           <option>Доски и лыжи</option>
           <option>Крепления</option>
@@ -41,15 +47,21 @@
         <span class="form__error">Выберите категорию</span>
       </div>
     </div>
+
     <div class="form__item form__item--wide">
       <label for="message">Описание</label>
-      <textarea id="message" name="message" placeholder="Напишите описание лота" ></textarea>
+      <textarea id="message" 
+                name="message" 
+                placeholder="Напишите описание лота" 
+                required>
+      </textarea>
       <span class="form__error">Напишите описание лота</span>
     </div>
+
     <div class="form__item form__item--file"> <!-- form__item--uploaded -->
       <label>Изображение</label>
       <div class="preview">
-        <button class="preview__remove" type="button">x</button>
+        <button class="preview__remove" type="button" name="add_img">x</button>
         <div class="preview__img">
           <img src="img/avatar.jpg" width="113" height="113" alt="Изображение лота">
         </div>
@@ -61,15 +73,36 @@
         </label>
       </div>
     </div>
+
     <div class="form__container-three">
       <div class="form__item form__item--small">
         <label for="lot-rate">Начальная цена</label>
-        <input id="lot-rate" type="number" name="lot-rate" placeholder="0" required>
+
+        <!-- 
+        QUEST_6.2.4: После отправки формы проверять, что были заполнены все поля, а также
+        значения полей «начальная цена» и «шаг ставки»: туда можно вводить только цифры. 
+       -->
+        <input id="lot-rate" 
+              type="number" 
+              name="lot-rate" 
+              placeholder="0" 
+              pattern="\d [0-9]"
+              required>
         <span class="form__error">Введите начальную цену</span>
       </div>
       <div class="form__item form__item--small">
         <label for="lot-step">Шаг ставки</label>
-        <input id="lot-step" type="number" name="lot-step" placeholder="0" >
+
+        <!-- 
+        QUEST_6.2.4: После отправки формы проверять, что были заполнены все поля, а также
+        значения полей «начальная цена» и «шаг ставки»: туда можно вводить только цифры. 
+       -->
+        <input id="lot-step" 
+              type="number" 
+              name="lot-step" 
+              placeholder="0" 
+              pattern="\d [0-9]"
+              required>
         <span class="form__error">Введите шаг ставки</span>
       </div>
       <div class="form__item">
@@ -80,6 +113,8 @@
     </div>
     <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
     <button type="submit" class="button">Добавить лот</button>
-  </form>
-  <?php } //foreach ?>
+
+    <?php //} //foreach ?>
+
+  </form>  
 </main>
