@@ -11,12 +11,9 @@
         
     </ul>
   </nav>
-
       <?php
         foreach($data['product_list'] as $product) {            
       ?>
-
-<!-- QUEST_6.5: Покажите информацию о лоте на странице (см. ниже) -->
   <section class="lot-item container">
     <h2><?= $product['name']; ?></h2>
     <div class="lot-item__content">
@@ -28,8 +25,6 @@
 
           <p class="lot-item__category">Категория: <span>Доски и лыжи</span></p>
           <p class="lot-item__description">
-
-            <!-- QUEST_6: выводим наше описание -->
             <?= $product['descr']; ?>
           </p>
         </div>
@@ -40,9 +35,7 @@
             </div>
             <div class="lot-item__cost-state">
               <div class="lot-item__rate">
-                <span class="lot-item__amount">Текущая цена</span>
-
-                <!-- QUEST_6: выводим нашу цену -->
+                <span class="lot-item__amount">Текущая цена</span>                
                 <span class="lot-item__cost">
                   <?= number_format($product['price'], 0, ',' , ' ' ); ?>
                 <b class="rub">р</b></span>
@@ -56,41 +49,41 @@
                 р</span>
               </div>
             </div>
-            <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
+            
+            <form class="lot-item__form" action="add.php" method="post">
               <p class="lot-item__form-item">
                 <label for="cost">Ваша ставка</label>
                 <input id="cost" type="number" name="cost" placeholder="
-                <?= sumPrice($product['price'], $product['StepPrice']); ?>
+                  <?= sumPrice($product['price'], $product['StepPrice']); ?>
                 ">
               </p>
-              <button type="submit" class="button">Сделать ставку</button>            
+
+<!-- передаем наше значение -->
+              <input type="hidden" name="lot_name_pass" value= "<?= $product['name']; ?>" >
+              <button type="submit" class="button" name="add_done">Сделать ставку</button>
             </form>
+
           </div>
           
           <div class="history">
             <h3>История ставок (<span><?= count($data['rate_list']); ?></span>)</h3>
             <table class="history__list">
-              <?php foreach($data['rate_list'] as $rate) { ?>
-                <tr class="history__item">                
-                  <td class="history__name"><?php print($rate['username']) ?></td>
-
-                  <!-- выводит дату из БД -->                
-                  <td class="history__price"><?php print($rate['amount']) ?> р </td>
-                  
+              <?php foreach($data['rate_list'] as $rate) { ?>              
+                <tr class="history__item">                                  
+                  <td class="history__name"><?php print($rate['username']) ?></td>                  
+                  <td class="history__price"><?php print($rate['amount']) ?> р </td>                  
                   <td class="history__time">
-                    <?php                                                    
-                      //Выводим время из БД
-                      $date = date('d.m.y', strtotime($rate['date_create'])); 
-                      $time = date('H:i', strtotime($rate['time_create']));                    
-                      print($date . "в " . $time);
+                    <?php                                                                          
+                      $date = date('d.m.y в H:i', strtotime($rate['date_create']));
+                      print($date);
                     ?>
                   </td>
                 </tr>
-                <?php } ?>
+                <?php } //foreach ?>
             </table>
           </div>          
         </div>
-      <?php } ?>
+      <?php } //foreach ?>
     </div>
   </section>
 </main>
