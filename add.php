@@ -26,7 +26,7 @@ $result_lot = mysqli_query($link, $sql_lot);
 $product_list = mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
 
 
-$sql_rate = "SELECT amount, date_create, time_create, username FROM rate
+$sql_rate = "SELECT amount, date_create, username FROM rate
             INNER JOIN user ON user.id = rate.user_id WHERE rate.lot_id";
 $result_rate = mysqli_query($link, $sql_rate);
 $rate_list = mysqli_fetch_all($result_rate, MYSQLI_ASSOC);

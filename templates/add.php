@@ -21,9 +21,9 @@
         <label for="lot-name">Наименование</label>
         
 <!-- получаем наше значение -->        
-        <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value="
-          <?=  $_POST["lot_name_pass"]; ?>
-        ">
+        <input id="lot-name" type="text" name="lot-name" 
+                              placeholder="Введите наименование лота" 
+                              value= "<?= $_POST["lot_name_pass"]; ?>">
 
         <span class="form__error">Введите наименование лота</span>
       </div>

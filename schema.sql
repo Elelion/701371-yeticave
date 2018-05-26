@@ -10,8 +10,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 CREATE TABLE lot (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	date_create DATE,
-	time_create TIME,
+	date_create DATETIME,
 	title VARCHAR(64),
 	description TEXT(1024),
 	image_file VARCHAR(255),

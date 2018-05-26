@@ -74,9 +74,9 @@
                   <td class="history__price"><?php print($rate['amount']) ?> р </td>                  
                   <td class="history__time">
                     <?php                                                                          
-                      $date = date('d.m.y', strtotime($rate['date_create'])); 
-                      $time = date('H:i', strtotime($rate['time_create']));                    
-                      print($date . "в " . $time);
+                      //$date = date('d.m.y', strtotime($rate['date_create'])) в date('H:i', strtotime($rate['date_create'])); 
+                      //$time = date('H:i', strtotime($rate['time_create']));                    
+                      //print($date . "в " . $time);
                     ?>
                   </td>
                 </tr>
