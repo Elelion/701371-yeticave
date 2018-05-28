@@ -3,19 +3,66 @@ require_once 'src/functions.php';
 date_default_timezone_set('Europe/Moscow');
 
 
-
-$lotName = $_POST['lot-name'];
-echo $lotName;
-
+if(!empty($_POST['lot-name'])) {
   
+}
+  ?>  
+<!--
+  <style>
+    #lot-name {    
+      border: 1px solid red;
+    }
+  </style>  
+-->
+  <?php
 
+if(!empty($_POST['lot-rate'])) {
+  
+}
 
-/*
-if (!empty($lotName)) {
-  if ($lotName != $_POST["lot_name_pass"]) {
-    echo "ERROR";    
+if(!empty($_POST['lot-step'])) {
+  
+}
+
+//Проверяем нажатие нашей кнопки
+if(isset($_POST['add_lot'])) {
+  if($_POST['lot-category'] == "Выберите категорию") {
+    ?><style>
+      #category { border: 1px solid red; }    
+    </style> <?php    
   }
-}*/
+  else {
+    //Загрузка файла
+    if($_FILES['load']['error'] == 0) //Проверяем нет ли ошибок, если НЕТ, то...
+    {
+      if($_FILES['load']['size'] <= 100000) //Проверяем размер
+      {
+        $types = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+
+        //Проверяем разрешения файла
+        if (in_array($_FILES['load']['type'], $types)) {
+          move_uploaded_file($_FILES['load']['tmp_name'], 'img/'.$_FILES['load']['name']);
+
+          //сохраняем наш файл с расширением                  
+          $extension = $_FILES['load']['name'];
+
+          //присваиваем новое уникальное имя . и получаем расширение, которое было сохр.
+          $_FILES['load']['name'] = uniqid() . "." . getFileExtension($extension);
+
+          echo "Был перемещен 1 файл" . $_FILES['load']['name'];
+        }      
+      }
+    }
+    echo $_POST['lot-name'];
+    echo $_POST['lot-rate'];
+    echo $_POST['lot-category'];
+    echo $_POST['lot-step'];
+
+    else {
+      echo "ошибка при передаче файла на сервер!";
+    }
+  } //else...
+}
 
 $link = connectDB();
 

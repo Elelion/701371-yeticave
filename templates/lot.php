@@ -50,16 +50,13 @@
               </div>
             </div>
             
-            <form class="lot-item__form" action="add.php" method="post">
+            <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
               <p class="lot-item__form-item">
                 <label for="cost">Ваша ставка</label>
                 <input id="cost" type="number" name="cost" placeholder="
                   <?= sumPrice($product['price'], $product['StepPrice']); ?>
                 ">
-              </p>
-
-<!-- передаем наше значение -->
-              <input type="hidden" name="lot_name_pass" value= "<?= $product['name']; ?>" >
+              </p>            
               <button type="submit" class="button" name="add_done">Сделать ставку</button>
             </form>
 

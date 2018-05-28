@@ -56,4 +56,10 @@ function sumPrice($current, $stepPrice) {
     $sum = $current + $stepPrice;
     return $sum;
 }
+
+//Выводим расширение загружаемого файла, см. add.php
+function getFileExtension($filename) {
+    $file_info = pathinfo($filename);
+    return $file_info['extension'];
+}
 ?>

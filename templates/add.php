@@ -13,23 +13,23 @@
   </nav>  
 
 <!-- QUEST_6.2.3: ...а action формы указывать на add.php -->
-  <form class="form form--add-lot container form--invalid" action="add.php" method="post"> <!-- form--invalid -->
+  <form class="form form--add-lot container form--invalid" 
+        action="add.php" 
+        method="post" 
+        enctype="multipart/form-data"> <!-- form--invalid -->
 
     <?php //foreach($data['product_list'] as $product) { ?>
 
     <h2>Добавление лота</h2>
     <div class="form__container-two">
-      <div class="form__item form__item--invalid"> <!-- form__item--invalid -->
+      <div class="form__item"> <!-- form__item--invalid -->
         <label for="lot-name">Наименование</label>
         
-<!-- получаем наше значение -->
-        <form action="../add.php" method="post">
-          <input id="lot-name" type="text" 
-                              name="lot-name"
-                              placeholder="Введите наименование лота" 
-                              value= "<?= $_POST["lot_name_pass"]; ?>"
-                              required>
-        </form>
+        <input id="lot-name" type="text" 
+                            name="lot-name"
+                            placeholder="Введите наименование лота" 
+                            value= ""
+                            required>
 
         <span class="form__error">Введите наименование лота</span>
       </div>
@@ -37,12 +37,12 @@
         <label for="category">Категория</label>
         <select id="category" name="lot-category" >
           <option>Выберите категорию</option>
-          <option>Доски и лыжи</option>
-          <option>Крепления</option>
-          <option>Ботинки</option>
-          <option>Одежда</option>
-          <option>Инструменты</option>
-          <option>Разное</option>
+
+<!-- выводим категорию в ComboBox -->
+          <?php foreach($data['category_list'] as $category) { ?>
+            <option><?php print($category['name']); ?></option>
+          <?php } ?>
+
         </select>
         <span class="form__error">Выберите категорию</span>
       </div>
@@ -61,15 +61,24 @@
     <div class="form__item form__item--file"> <!-- form__item--uploaded -->
       <label>Изображение</label>
       <div class="preview">
-        <button class="preview__remove" type="button" name="add_img">x</button>
+        <button class="_preview__remove" 
+               type="submit" 
+               name="add_img" 
+               value="Загрузить">x</button>
+
         <div class="preview__img">
           <img src="img/avatar.jpg" width="113" height="113" alt="Изображение лота">
         </div>
       </div>
       <div class="form__input-file">
-        <input class="visually-hidden" type="file" id="photo2" value="">
+        <input class="_visually-hidden" 
+               type="file" 
+               id="photo2" 
+               value="" 
+               name="load">
+
         <label for="photo2">
-          <span>+ Добавить</span>
+          <!-- <span>+ Добавить</span> -->
         </label>
       </div>
     </div>
@@ -111,8 +120,13 @@
         <span class="form__error">Введите дату завершения торгов</span>
       </div>
     </div>
+    <!--
     <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
-    <button type="submit" class="button">Добавить лот</button>
+    -->
+
+    <button type="submit" 
+            class="button"
+            name="add_lot">Добавить лот</button>
 
     <?php //} //foreach ?>
 

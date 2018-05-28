@@ -9,7 +9,9 @@
             
             <?php foreach($data['category_list'] as $category) { ?>
                 <li class="promo__item promo__item--<?php print($category['css_class']) ?>">
-                    <a class="promo__link" href="all-lots.html"><?php print($category['name']); ?></a>
+                    <a class="promo__link" href="all-lots.html">
+                        <?php print($category['name']); ?>
+                    </a>
                 </li>
             <?php } ?>
 

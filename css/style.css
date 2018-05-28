@@ -97,7 +97,7 @@ h2 {
 
 .button:hover,
 .button:focus {
-  background-color: #61c3f4;
+  background-color: red;
 }
 
 .button:active {
